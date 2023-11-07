@@ -12,15 +12,15 @@ var render = Render.create({
     element: document.body,
     engine: engine,
     options: {
-        width: 600,
-        height: 700,
+        width: 615,
+        height: 720,
         wireframes: false,
     }
 });
 
 // Créer les objets
 var ground = Bodies.rectangle(400, 600, 800, 50, { isStatic: true, render: { fillStyle: ' #FF0000 ' } });
-var circleA = Bodies.circle(300, 200, 40, {
+var circleA = Bodies.circle(55, 515, 52, {
     render: {
         sprite: {
             texture: '/asset/pokeball.png',
@@ -28,7 +28,7 @@ var circleA = Bodies.circle(300, 200, 40, {
             yScale: 0.1,
         }
     },
-    restitution: 0.5,
+    // restitution: 0.5,
     slop: 0.5
 });
 
@@ -49,12 +49,12 @@ Render.run(render);
 
 // Ajouter la gestion de l'événement de saut
 var jumping = false;
-var moveSpeed = 5;
+var moveSpeed = 8;
 var xSpeed = 0;
 
 document.body.addEventListener('keydown', function(event) {
     if (event.keyCode === 38 && !jumping) {
-        Body.applyForce(circleA, { x: circleA.position.x, y: circleA.position.y }, { x: 0, y: -0.2 });
+        Body.applyForce(circleA, { x: circleA.position.x, y: circleA.position.y }, { x: 0, y: -0.3 });
         jumping = true;
     } else if (event.keyCode === 37) {
         xSpeed = -moveSpeed;
