@@ -1,3 +1,6 @@
+var windowWidth = window.innerWidth;
+var windowHeight = window.innerHeight;
+
 // Créer un moteur Matter.js
 var Engine = Matter.Engine,
     Render = Matter.Render,
@@ -12,14 +15,14 @@ var render = Render.create({
     element: document.body,
     engine: engine,
     options: {
-        width: 615,
-        height: 720,
+        width: windowWidth,
+        height: windowHeight,
         wireframes: false,
     }
 });
 
 // Créer les objets
-var ground = Bodies.rectangle(400, 600, 800, 50, { isStatic: true, render: { fillStyle: ' #FF0000 ' } });
+var ground = Bodies.rectangle(300, 600, windowWidth, 50, { isStatic: true, render: { fillStyle: ' #FF0000 ' } });
 var circleA = Bodies.circle(55, 515, 52, {
     render: {
         sprite: {
@@ -32,10 +35,17 @@ var circleA = Bodies.circle(55, 515, 52, {
     slop: 0.5
 });
 
+// var numberWall = 0
+// function addWall(x, y, l, h) {
+//     var wallnumberWall = Bodies.rectangle(100, 100, 100, 100, { isStatic: true, render: { fillStyle: ' #00FF00 ' } }),
+// }
+
+// addWall(400, 420, 200, 100)
+
 var walls = [
-    Bodies.rectangle(500, 526, 200, 100, { isStatic: true, render: { fillStyle: ' #00FF00 ' } }),
-    Bodies.rectangle(100, 350, 200, 30, { isStatic: true, render: { fillStyle: ' #00FF00 ' } }),
-    // Ajoutez d'autres murs ici
+    Bodies.rectangle(600, 526, 200, 100, { isStatic: true, render: { fillStyle: ' #00FF00 ' } }),
+    Bodies.rectangle(100, 350, 200, 30, { isStatic: true, render: { fillStyle: ' #0000FF ' } }),
+    Bodies.rectangle(350, 200, 200, 30, { isStatic: false, render: { fillStyle: ' #FF00FF ' } }),
 ];
 
 // Ajouter tous les objets au monde
