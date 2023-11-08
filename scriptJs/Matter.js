@@ -22,7 +22,7 @@ var render = Render.create({
 });
 
 // Créer les objets
-var ground = Bodies.rectangle(300, 600, windowWidth, 50, { isStatic: true, render: { fillStyle: ' #FF0000 ' } });
+var ground = Bodies.rectangle(windowWidth / 2, 600, windowWidth, 50, { isStatic: true, render: { fillStyle: ' #FF0000 ' } });
 var circleA = Bodies.circle(55, 515, 52, {
     render: {
         sprite: {
