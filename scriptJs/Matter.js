@@ -15,6 +15,7 @@ var render = Render.create({
         width: 1280,
         height: 720,
         wireframes: false,
+        background: 'rgba(0, 0, 0, 0)'
     }
 });
 

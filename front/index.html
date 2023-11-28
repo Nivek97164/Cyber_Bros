@@ -5,20 +5,33 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
   <!-- <style src="/style/idex.css"></style> -->
   <style>
+    @import url('https://fonts.google.com/specimen/Chivo+Mono');
     body {
+      font-family: 'Nexa', sans-serif;
       margin: 0;
       overflow: hidden;
-      background-color: blueviolet;
+      background-color: black;
     }
     canvas {
       display: block;
       margin: auto;
     }
 
+    .score {
+      position: absolute;
+      color: #333333;
+      top: -80px;
+      left: 16.5%;
+      margin: 0px;
+      font-size: 720px;
+      z-index: -1;
+    }
+
   </style>
   
 </head>
 <body>
+  <H1 class="score">8/8</H1>
     <script src="/scriptJs/Matter.js"></script>
 </body>
 </html>
