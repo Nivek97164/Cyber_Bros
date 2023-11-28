@@ -1,4 +1,4 @@
-html, body, *{
+/* html, body, *{
     overflow: hidden;
     background-color: aqua;
 }
@@ -12,4 +12,15 @@ canvas {
     height: 100%;
 }
 
- 
+body {
+    margin: 0;
+    overflow: hidden;
+  }
+  canvas {
+    display: block;
+    width: 1280;
+    height: 720px;
+    margin: auto;
+  } */
+
+  
