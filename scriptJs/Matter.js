@@ -1,5 +1,6 @@
 var windowWidth = window.innerWidth;
 var windowHeight = window.innerHeight;
+console.log(windowHeight)
 
 // Créer un moteur Matter.js
 var Engine = Matter.Engine,
@@ -43,9 +44,16 @@ var circleA = Bodies.circle(55, 515, 52, {
 // addWall(400, 420, 200, 100)
 
 var walls = [
-    Bodies.rectangle(600, 526, 200, 100, { isStatic: true, render: { fillStyle: ' #00FF00 ' } }),
-    Bodies.rectangle(100, 350, 200, 30, { isStatic: true, render: { fillStyle: ' #0000FF ' } }),
-    Bodies.rectangle(350, 200, 200, 30, { isStatic: false, render: { fillStyle: ' #FF00FF ' } }),
+    Bodies.rectangle(windowWidth, 475, 50, 200, { isStatic: true, render: { fillStyle: ' #00FF00 ' } }),
+
+    Bodies.rectangle(0, 475, 50, 200, { isStatic: true, render: { fillStyle: ' #00FFFF ' } }),
+
+    Bodies.rectangle(80, 350, 150, 30, { isStatic: true, render: { fillStyle: ' #0000FF ' } }),
+
+    Bodies.rectangle(windowHeight - 167, 350, 150, 30, { isStatic: true, render: { fillStyle: ' #0000FF ' } }),
+    
+    Bodies.circle(windowWidth / 2, 200, 40, { isStatic: false, render: { fillStyle: ' #FF00FF ' },restitution: 1,
+    slop: 1 }),
 ];
 
 // Ajouter tous les objets au monde
@@ -116,3 +124,28 @@ Matter.Events.on(engine, 'collisionEnd', function(event) {
 Matter.Events.on(engine, 'beforeUpdate', function(event) {
     Body.setVelocity(circleA, { x: xSpeed, y: circleA.velocity.y });
 });
+
+function checkCollision() {
+    var collisionDetected = false;
+
+    // Vérifier chaque paire de collisions
+    Matter.Events.on(engine, 'collisionStart', function (event) {
+        var pairs = event.pairs;
+
+        pairs.forEach(function (pair) {
+            // Vérifier si la collision implique un cercle et un rectangle bleu
+            if ((pair.bodyA.label === 'circle' && pair.bodyB.label === 'rectangle_blue') ||
+                (pair.bodyA.label === 'rectangle_blue' && pair.bodyB.label === 'circle')) {
+
+                // Mettre à jour la variable pour indiquer la détection de collision
+                collisionDetected = true;
+            }
+        });
+    });
+
+    // Afficher le résultat dans la console
+    console.log('Collision détectée caca:', collisionDetected);
+}
+
+// Utiliser la fonction pour vérifier les collisions
+checkCollision();
