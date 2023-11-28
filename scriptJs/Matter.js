@@ -24,16 +24,8 @@ var render = Render.create({
 
 // Créer les objets
 var ground = Bodies.rectangle(windowWidth / 2, 600, windowWidth, 50, { isStatic: true, render: { fillStyle: ' #FF0000 ' } });
-var circleA = Bodies.circle(55, 515, 52, {
-    render: {
-        sprite: {
-            texture: '/asset/pokeball.png',
-            xScale: 0.1,
-            yScale: 0.1,
-        }
-    },
-    // restitution: 0.5,
-    slop: 0.5
+var circleA = Bodies.rectangle(80, 350, 150, 30, {
+    render: {sprite: {fillStyle: ' #00FF00 ', xScale: 0.1, yScale: 0.1,}},// restitution: 0.5, slop: 0.5
 });
 
 // var numberWall = 0
@@ -44,15 +36,15 @@ var circleA = Bodies.circle(55, 515, 52, {
 // addWall(400, 420, 200, 100)
 
 var walls = [
-    Bodies.rectangle(windowWidth, 475, 50, 200, { isStatic: true, render: { fillStyle: ' #00FF00 ' } }),
+    Bodies.rectangle(windowWidth, 475, 50, 200, { isStatic: true, render: { fillStyle: ' #00FF00 ' } , label : "rectangle_green" }),
 
-    Bodies.rectangle(0, 475, 50, 200, { isStatic: true, render: { fillStyle: ' #00FFFF ' } }),
+    Bodies.rectangle(0, 475, 50, 200, { isStatic: true, render: { fillStyle: ' #00FFFF ' }, label : "rectangle_blue_light"  }),
 
     Bodies.rectangle(80, 350, 150, 30, { isStatic: true, render: { fillStyle: ' #0000FF ' } }),
 
     Bodies.rectangle(windowHeight - 167, 350, 150, 30, { isStatic: true, render: { fillStyle: ' #0000FF ' } }),
     
-    Bodies.circle(windowWidth / 2, 200, 40, { isStatic: false, render: { fillStyle: ' #FF00FF ' },restitution: 1,
+    Bodies.circle(windowWidth / 2, 200, 40, { isStatic: false, render: { fillStyle: ' #FF00FF ' }, label : "ball" ,restitution: 1,
     slop: 1 }),
 ];
 
@@ -126,7 +118,7 @@ Matter.Events.on(engine, 'beforeUpdate', function(event) {
 });
 
 function checkCollision() {
-    var collisionDetected = false;
+    // var collisionDetected = false;
 
     // Vérifier chaque paire de collisions
     Matter.Events.on(engine, 'collisionStart', function (event) {
@@ -134,8 +126,8 @@ function checkCollision() {
 
         pairs.forEach(function (pair) {
             // Vérifier si la collision implique un cercle et un rectangle bleu
-            if ((pair.bodyA.label === 'circle' && pair.bodyB.label === 'rectangle_blue') ||
-                (pair.bodyA.label === 'rectangle_blue' && pair.bodyB.label === 'circle')) {
+            if ((pair.bodyA.label === 'ball' && pair.bodyB.label === 'rectangle_green') ||
+                (pair.bodyA.label === 'rectangle_green' && pair.bodyB.label === 'ball')) {
 
                 // Mettre à jour la variable pour indiquer la détection de collision
                 collisionDetected = true;
