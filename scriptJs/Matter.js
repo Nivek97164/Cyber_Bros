@@ -22,7 +22,7 @@ var render = Render.create({
 // Créer les objets
 var ground = Bodies.rectangle(640, 600, 1280, 50, { isStatic: true, render: { fillStyle: '#FF0000' } });
 
-var player1 = Bodies.rectangle(150, 400, 150, 30, {
+var player1 = Bodies.rectangle(110, 400, 150, 30, {
     render: {sprite: {fillStyle: '#00FF00'}},});
     
 var player2 = Bodies.rectangle(1170, 400, 150, 30, {
