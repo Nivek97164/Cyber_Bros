@@ -1,11 +1,14 @@
 // Créer un moteur Matter.js
 var Engine = Matter.Engine,
-    Render = Matter.Render,
-    World = Matter.World,
-    Bodies = Matter.Bodies,
-    Body = Matter.Body;
+Render = Matter.Render,
+World = Matter.World,
+Bodies = Matter.Bodies,
+Body = Matter.Body;
 
 var engine = Engine.create();
+
+var goal_count_player_1 = 0;
+var goal_count_player_2 = 0;
 
 // Créer un rendu
 var render = Render.create({
@@ -119,3 +122,52 @@ Matter.Events.on(engine, 'collisionEnd', function(event) {
 Matter.Events.on(engine, 'beforeUpdate', function(event) {
     Body.setVelocity(player1, { x: xSpeed, y: player1.velocity.y });
 });
+
+function goal_count() {
+    var collisionDetected = false;
+    // Vérifier chaque paire de collisions
+    Matter.Events.on(engine, 'collisionStart', function (event) {
+        var pairs = event.pairs;
+
+        pairs.forEach(function (pair) {
+            // Vérifier si la collision implique un cercle et un rectangle bleu
+            if ((pair.bodyA.label === 'ball' && pair.bodyB.label === 'rectangle_blue_light') ||
+                (pair.bodyA.label === 'rectangle_blue_light' && pair.bodyB.label === 'ball')) {
+
+                // Mettre à jour la variable pour indiquer la détection de collision
+                collisionDetected = true;
+                // Afficher le résultat dans la console
+                console.log('Le joueur 2 a marqué', collisionDetected);
+                goal_count_player_2 = (goal_count_player_2 + 1)
+                var scoreDisplay = document.getElementById("scoreDisplay");
+                scoreDisplay.innerHTML = goal_count_player_1 +  "/" + goal_count_player_2;                // World.add(engine.world, [ground, player1, player2, ...walls]);
+                console.log(goal_count_player_1,goal_count_player_2);
+                console.log("aj uig" + scoreDisplay);
+            }
+            if ((pair.bodyA.label === 'ball' && pair.bodyB.label === 'rectangle_green') ||
+                    (pair.bodyA.label === 'rectangle_green' && pair.bodyB.label === 'ball')) {
+                        
+                // Mettre à jour la variable pour indiquer la détection de collision
+                collisionDetected = true;
+                // Afficher le résultat dans la console
+                console.log('Le joueur 1 a marqué', collisionDetected);
+                goal_count_player_1 = (goal_count_player_1 + 1)
+                var scoreDisplay2 = document.getElementById("scoreDisplay");
+                scoreDisplay2.innerHTML = goal_count_player_1 +  "/" + goal_count_player_2;
+                // World.add(engine.world, [ground, player1, player2, ...walls]);
+                console.log(goal_count_player_1,goal_count_player_2);
+                console.log("aj uig" + scoreDisplay2);
+            }
+        });
+    });
+}
+
+function goal_limite() {
+    if ((goal_count_player_1 >= 9) ||( goal_count_player_2 >= 9) ){
+        
+    }
+
+}
+
+goal_count();
+
