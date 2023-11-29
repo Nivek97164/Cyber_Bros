@@ -133,6 +133,7 @@ function goal_count() {
             // Vérifier si la collision implique un cercle et un rectangle bleu
             if ((pair.bodyA.label === 'ball' && pair.bodyB.label === 'rectangle_blue_light') ||
                 (pair.bodyA.label === 'rectangle_blue_light' && pair.bodyB.label === 'ball')) {
+                goal_limit();
 
                 // Mettre à jour la variable pour indiquer la détection de collision
                 collisionDetected = true;
@@ -145,7 +146,8 @@ function goal_count() {
                 console.log("aj uig" + scoreDisplay);
             }
             if ((pair.bodyA.label === 'ball' && pair.bodyB.label === 'rectangle_green') ||
-                    (pair.bodyA.label === 'rectangle_green' && pair.bodyB.label === 'ball')) {
+                (pair.bodyA.label === 'rectangle_green' && pair.bodyB.label === 'ball')) {
+                goal_limit();
                         
                 // Mettre à jour la variable pour indiquer la détection de collision
                 collisionDetected = true;
@@ -162,12 +164,17 @@ function goal_count() {
     });
 }
 
-function goal_limite() {
+goal_count();
+
+function goal_limit() {
     if ((goal_count_player_1 >= 9) ||( goal_count_player_2 >= 9) ){
-        
+        goal_count_player_1 = 0
+        goal_count_player_2 = 0
     }
+    return
 
 }
 
-goal_count();
+
+
 
